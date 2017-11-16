@@ -10,8 +10,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
 
 
-base_path = base_path[:base_path.find("python_study" + os.path.sep) + 13]
-
 def load_datasets(feature_paths, label_paths):
     feature = np.ndarray(shape=(0, 41))
     label = np.ndarray(shape=(0, 1))
