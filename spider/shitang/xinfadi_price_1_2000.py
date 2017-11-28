@@ -16,7 +16,7 @@ def getHTMLText(url):
         r.encoding = r.apparent_encoding
         return r.text
     except:
-        return ""
+        return "" 
 
 
 def fill_price_list(html, pfile):
