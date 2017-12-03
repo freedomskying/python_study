@@ -1,6 +1,7 @@
 # get_menu_image.py
 import requests
 import re
+import os
 
 
 def getHTMLText(url):
@@ -13,25 +14,23 @@ def getHTMLText(url):
         return ""
 
 
-def parsePage(ilt, html):
+def parsePage(html, pic_name):
+    root = "D://menu//"
     try:
-        plt = re.findall(r'\"thumbURL\"\:\"[\d\.]*\"', html)
-        tlt = re.findall(r'\"raw_title\"\:\".*?\"', html)
-        for i in range(len(plt)):
-            price = eval(plt[i].split(':')[1])
-            title = eval(tlt[i].split(':')[1])
-            ilt.append([price, title])
-    except:
-        print("")
+        plt = re.findall(r'"objURL":"(.*?)"', html)
+        for i in range(4):
+            path = root + pic_name + str(i) + ".jpg"
+            if not os.path.exists(root):
+                os.mkdir(root)
+            if not os.path.exists(path):
+                r = requests.get(plt[i])
+                with open(path, 'wb') as f:
+                    f.write(r.content)
+                    r.close()
 
-
-def printGoodsList(ilt):
-    tplt = "{:4}\t{:8}\t{:16}"
-    print(tplt.format("序号", "价格", "商品名称"))
-    count = 0
-    for g in ilt:
-        count = count + 1
-        print(tplt.format(count, g[0], g[1]))
+            print(plt[i])
+    except Exception as err:
+        print(err)
 
 
 def get_menu_list(file_path, menu_list):
@@ -43,17 +42,20 @@ def get_menu_list(file_path, menu_list):
 def main():
     # 获取菜单信息
     menu_list = []
-    file_path = ""
+    file_path = "d:\\menu.txt"
     get_menu_list(file_path, menu_list)
 
-    #获取图片
+    # 获取图片
     start_url = 'http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word='
     for i in range(len(menu_list)):
         try:
-            url = start_url + menu_list[i]
+            url = start_url + menu_list[i][0]
+            print(url)
             html = getHTMLText(url)
-            parsePage(html)
-        except:
+            parsePage(html, menu_list[i][0])
+        except Exception as err:
+            print(err)
             continue
+
 
 main()
