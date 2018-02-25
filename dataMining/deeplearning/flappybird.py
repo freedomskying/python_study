@@ -5,7 +5,12 @@ import tensorflow as tf
 import cv2
 import sys
 
-sys.path.append("game/")
+base_path = os.getcwd()
+base_path = base_path[:base_path.find("python_study\\") + 13]
+file_path = base_path + "dataMining\\deeplearning\\game\\"
+
+sys.path.append(file_path)
+
 import wrapped_flappy_bird as game
 import random
 import numpy as np

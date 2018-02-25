@@ -22,6 +22,8 @@ if __name__ == '__main__':
     base_path = base_path[:base_path.find("python_study\\") + 13]
     data, cityName = loadData(base_path + "dataMining\\files\\cluster\\city.txt")
 
+    print(data)
+
     #使用KMeans算法进行聚类，聚类数为3，
     km = KMeans(n_clusters=3)
     #label为每条记录对应的聚类标签，该例中为城市对应的聚类标签（0,1,2）
