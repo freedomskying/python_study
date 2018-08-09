@@ -4,6 +4,7 @@ import os
 from sklearn import linear_model
 from sklearn.preprocessing import PolynomialFeatures
 
+a=1
 base_path = os.getcwd()
 base_path = base_path[:base_path.find("python_study" + os.path.sep) + 13]
 data_path = base_path + os.path.sep + "dataMining" + os.path.sep + "files" + os.path.sep + "regression" \
