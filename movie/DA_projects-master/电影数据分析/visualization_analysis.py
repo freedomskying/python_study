@@ -47,8 +47,13 @@ def draw_sentiment_pic(csv_file):
     for each in info[:-1]:
         attr.append(each[0])
         val.append(each[1])
+
+    print(info)
+    print(attr)
+    print(val)
+
     line = Line(csv_file + ":影评情感分析")
-    line.add("", attr, val, is_smooth=True, is_more_utils=True)
+    line.add("test", attr, val, is_smooth=True, is_more_utils=True)
     line.render(csv_file + "_情感分析曲线图.html")
 
 
@@ -257,9 +262,9 @@ def score_draw(csv_file):
 
 def main(csv_file, stopwords_path, pic_path):
     draw_sentiment_pic(csv_file)
-    draw_citys_pic(csv_file)
-    score_draw(csv_file)
-    word_cloud(csv_file, stopwords_path, pic_path)
+    # draw_citys_pic(csv_file)
+    # score_draw(csv_file)
+    # word_cloud(csv_file, stopwords_path, pic_path)
 
 
 if __name__ == '__main__':
