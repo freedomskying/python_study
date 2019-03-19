@@ -12,7 +12,7 @@ movie_name = ""
 
 
 def get_city(url, i):
-    time.sleep(round(random.uniform(2, 3), 2))
+    time.sleep(round(random.uniform(3, 7), 2))
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0'
     }
@@ -24,15 +24,23 @@ def get_city(url, i):
     else:
         print("\n第{}个用户城市信息获取失败".format(i))
     pattern = re.compile('<div class="user-info">.*?<a href=".*?">(.*?)</a>', re.S)
-    item = re.findall(pattern, res.text)  # list类型
-    return item[0]  # 只有一个元素，所以直接返回
+
+    try:
+        item = re.findall(pattern, res.text)  # list类型
+        return item[0]  # 只有一个元素，所以直接返回
+    except OSError as err:
+        print("OS error: {0}".format(err))
+    else:
+        print("number [%d] url [%s] is reject" % (i, url))
+
+    return '被屏蔽了'
 
 
 def get_content(movie_id, page):
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0'}
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36'}
     cookies = {
-        'cookie': 'bid=8Pi-KEFBPg8; __yadk_uid=2l8sSjcAdFD0Yp1okiVMrbWmnDV1Sd1P; loc-last-index-location-id="108288"; ll="108288"; gr_user_id=a4e90ecf-4e9e-492c-a110-cfd02b16a52d; douban-fav-remind=1; ct=y; dbcl2="193625597:Olknt0R0avU"; ck=rnJq; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1552982109%2C%22https%3A%2F%2Fwww.douban.com%2F%22%5D; ap_v=0,6.0; _pk_id.100001.4cf6=75e6351dc23bcd54.1552883214.7.1552982590.1552971538.; _pk_ses.100001.4cf6=*; __utma=30149280.755394970.1552883190.1552975276.1552981238.10; __utmb=30149280.11.10.1552981238; __utmc=30149280; __utmz=30149280.1552975276.9.2.utmcsr=baidu|utmccn=(organic)|utmcmd=organic; __utmv=30149280.19362; __utma=223695111.1745635151.1552883214.1552971538.1552982109.7; __utmb=223695111.0.10.1552982109; __utmc=223695111; __utmz=223695111.1552982109.7.2.utmcsr=douban.com|utmccn=(referral)|utmcmd=referral|utmcct=/; push_noty_num=0; push_doumail_num=0; _vwo_uuid_v2=D2307D86FF2E347BF938BBDDD851DFBBB|bb4d857776a850246a4f730aa85c95b9'}
+        'cookie': 'll="108288"; bid=qiNaWXBOiJU; __utmz=30149280.1552971218.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); push_doumail_num=0; __utmv=30149280.460; push_noty_num=0; douban-profile-remind=1; _vwo_uuid_v2=D7845C2C2D7E248E98B7041486566020C|5f57cff2f508e39bfde24cb18e25fa09; __utma=30149280.916845649.1552971218.1552971218.1552983358.2; __utmc=30149280; __utmt=1; dbcl2="4604881:gSp/Z2J08d4"; ck=GwBk; ap_v=0,6.0; __utmb=30149280.5.10.1552983358; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1552983388%2C%22https%3A%2F%2Fwww.douban.com%2Fsearch%3Fsource%3Dsuggest%26q%3D%25E4%25B9%259D%25E5%25B7%259E%22%5D; _pk_id.100001.4cf6=cbd06f3c38fc06b1.1552971291.2.1552983388.1552971325.; _pk_ses.100001.4cf6=*; __utma=223695111.1816338466.1552971292.1552971292.1552983389.2; __utmb=223695111.0.10.1552983389; __utmc=223695111; __utmz=223695111.1552983389.2.2.utmcsr=douban.com|utmccn=(referral)|utmcmd=referral|utmcct=/search'}
 
     # 获取热门的全部评论信息
     # https://movie.douban.com/subject/26683723/comments?start=20&limit=20&sort=new_score&status=P
@@ -40,13 +48,20 @@ def get_content(movie_id, page):
     # https://movie.douban.com/subject/26683723/comments?start=0&limit=20&sort=new_score&status=P&percent_type=h
 
     url = "https://movie.douban.com/subject/" + str(movie_id) + "/comments?start=" + str(
-        page * 10) + "&limit=20&sort=new_score&status=P"
+        page * 20) + "&limit=20&sort=new_score&status=P"
     res = requests.get(url, headers=headers, cookies=cookies)
 
     # 获取电影名称
     pattern = re.compile('<div id="wrapper">.*?<div id="content">.*?<h1>(.*?) 短评</h1>', re.S)
     global movie_name
     movie_name = re.findall(pattern, res.text)[0]  # list类型
+
+    try:
+        movie_name = re.findall(pattern, res.text)[0]  # list类型
+    except OSError as err:
+        print("OS error: {0}".format(err))
+    else:
+        movie_name = '被屏蔽了'
 
     res.encoding = "utf-8"
     if res.status_code == 200:
@@ -101,4 +116,4 @@ def main(movie_id, pages):
 
 
 if __name__ == '__main__':
-    main(26683723, 5)  # 26752088    26366496  评论电影的ID号+要爬取的评论页面数
+    main(26322999, 5)  # 26752088    26366496  评论电影的ID号+要爬取的评论页面数
