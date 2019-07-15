@@ -1,0 +1,12 @@
+Variable Name | Descritption | Type
+SeriousDlqin2yrs | 出现过逾期超过（含）90天（M4） | Y/N
+RevolvingUtilizationOfUnsecuredLines |信用卡和个人信贷额度的总余额（除了房地产和没有分期付款债务，如汽车贷款） | percentage
+age | 年龄 | integer
+NumberOfTime30-59DaysPastDueNotWorse | 借款人历史出现过30-59天（M2）逾期记录的次数，但两年内无更严重逾期 | integer
+DebtRatio | 每月偿还债务（比如，赡养费，生活费）除以月总收入 | percentage
+MonthlyIncome | 月收入 | real
+NumberOfOpenCreditLinesAndLoans | 未偿还贷款数据（汽车嗲款或抵押贷款等分期付款）和信贷额度（如信用卡） | integer
+NumberOfTimes90DaysLate | 借款人历史出现过90天（M4）或以上的记录的次数 | integer
+NumberRealEstateLoansOrLines | 抵押贷款和房地产贷款数量，包括房屋净值信贷额度 | integer
+NumberOfTime60-89DaysPastDueNotWorse | 借款人历史有出现过60-90（M3）逾期记录的次数，但两年内无更严重逾期 | integer
+NumberOfDependents | 家庭中的家庭人数（配偶、子女等） | integer
