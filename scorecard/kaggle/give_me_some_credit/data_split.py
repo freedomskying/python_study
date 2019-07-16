@@ -14,3 +14,5 @@ def data_split(data):
 
     train.to_csv('data/TrainData.csv', index=False)
     test.to_csv('data/TestData.csv', index=False)
+
+

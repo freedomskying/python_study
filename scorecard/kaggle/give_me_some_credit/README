@@ -1,12 +1,39 @@
-Variable Name | Descritption | Type
-SeriousDlqin2yrs | 出现过逾期超过（含）90天（M4） | Y/N
-RevolvingUtilizationOfUnsecuredLines |信用卡和个人信贷额度的总余额（除了房地产和没有分期付款债务，如汽车贷款） | percentage
-age | 年龄 | integer
-NumberOfTime30-59DaysPastDueNotWorse | 借款人历史出现过30-59天（M2）逾期记录的次数，但两年内无更严重逾期 | integer
-DebtRatio | 每月偿还债务（比如，赡养费，生活费）除以月总收入 | percentage
-MonthlyIncome | 月收入 | real
-NumberOfOpenCreditLinesAndLoans | 未偿还贷款数据（汽车嗲款或抵押贷款等分期付款）和信贷额度（如信用卡） | integer
-NumberOfTimes90DaysLate | 借款人历史出现过90天（M4）或以上的记录的次数 | integer
-NumberRealEstateLoansOrLines | 抵押贷款和房地产贷款数量，包括房屋净值信贷额度 | integer
-NumberOfTime60-89DaysPastDueNotWorse | 借款人历史有出现过60-90（M3）逾期记录的次数，但两年内无更严重逾期 | integer
-NumberOfDependents | 家庭中的家庭人数（配偶、子女等） | integer
+数据源说明
+    Variable Name | Descritption | Type
+    SeriousDlqin2yrs | 出现过逾期超过（含）90天（M4） | Y/N
+    RevolvingUtilizationOfUnsecuredLines |信用卡和个人信贷额度的总余额（除了房地产和没有分期付款债务，如汽车贷款） | percentage
+    age | 年龄 | integer
+    NumberOfTime30-59DaysPastDueNotWorse | 借款人历史出现过30-59天（M2）逾期记录的次数，但两年内无更严重逾期 | integer
+    DebtRatio | 每月偿还债务（比如，赡养费，生活费）除以月总收入 | percentage
+    MonthlyIncome | 月收入 | real
+    NumberOfOpenCreditLinesAndLoans | 未偿还贷款数据（汽车嗲款或抵押贷款等分期付款）和信贷额度（如信用卡） | integer
+    NumberOfTimes90DaysLate | 借款人历史出现过90天（M4）或以上的记录的次数 | integer
+    NumberRealEstateLoansOrLines | 抵押贷款和房地产贷款数量，包括房屋净值信贷额度 | integer
+    NumberOfTime60-89DaysPastDueNotWorse | 借款人历史有出现过60-90（M3）逾期记录的次数，但两年内无更严重逾期 | integer
+    NumberOfDependents | 家庭中的家庭人数（配偶、子女等） | integer
+
+建模步骤
+    1.数据获取
+        存量客户数据
+        潜在客户数据
+    2.数据预处理
+        缺失值处理
+        异常值处理
+    3.探索性分析（EDA）
+        变量分布情况
+        中位数、均值等
+    4.变量选择
+        单变量选择
+        基于机器模型选择
+    5.模型开发
+        变量离散化
+        WOE变化
+        逻辑回归
+    6.模型评估
+        K-S指标
+        拟合度曲线
+    7.信用评分
+        好坏比
+        基础分值等
+    8.评分系统
+        根据信用评分方法，建立评分系统

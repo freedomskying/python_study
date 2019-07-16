@@ -9,3 +9,7 @@ data = data.iloc[:, 1:]
 age = data['age']
 sns.distplot(age)
 plt.show()
+
+income = data[data['MonthlyIncome']<50000]['MonthlyIncome']
+sns.distplot(income)
+plt.show()
