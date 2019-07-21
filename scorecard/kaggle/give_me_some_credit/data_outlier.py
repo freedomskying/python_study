@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # 获取文件
-data = pd.read_csv('data/cs-training.csv')
-data = data.iloc[:, 1:]
+data = pd.read_csv('data/train_add_missing.csv')
 
 # 打印表头
 print(data.columns)

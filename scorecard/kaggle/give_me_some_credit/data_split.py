@@ -16,3 +16,8 @@ def data_split(data):
     test.to_csv('data/TestData.csv', index=False)
 
 
+if __name__ == '__main__':
+    # 获取文件
+    data = pd.read_csv('data/train_add_missing.csv')
+
+    data_split(data)

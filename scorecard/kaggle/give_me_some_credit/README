@@ -12,6 +12,11 @@
     NumberOfTime60-89DaysPastDueNotWorse | 借款人历史有出现过60-90（M3）逾期记录的次数，但两年内无更严重逾期 | integer
     NumberOfDependents | 家庭中的家庭人数（配偶、子女等） | integer
 
+程序说明
+    数据缺失值处理
+        data_init.py
+    数据异常值处理
+
 建模步骤
     1.数据获取
         存量客户数据

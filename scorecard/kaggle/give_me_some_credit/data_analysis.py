@@ -1,12 +1,20 @@
 import seaborn as sns
 from matplotlib import pyplot as plt
 import pandas as pd
+import numpy as np
 
 # 获取文件
-data = pd.read_csv('data/cs-training.csv')
+data = pd.read_csv('data/train_add_missing.csv')
 data = data.iloc[:, 1:]
 
-known = data[data['MonthlyIncome'].notnull()].values
+# 绘制箱型图
+# fig, ax = plt.subplots(2, 5)
+#
+# m = 0
+# for i in range(2):
+#     for j in range(5):
+#         data.hist(column=data.columns[m], bins=12, ax=ax[i, j], figsize=(20, 18))
+#         m += 1
 
 age = data['age']
 sns.distplot(age)
