@@ -48,11 +48,11 @@ train_woe = pd.read_csv('data/train_data_woe.csv')
 
 # 因为第一个是常数项
 # 构建评分卡时候只需要选出那些，IV值高的特征就行，最后相加得到总分
-x1 = get_score(coe[1], train_woe[1], p)
-x2 = get_score(coe[2], train_woe[2], p)
-x3 = get_score(coe[3], train_woe[3], p)
-x7 = get_score(coe[4], train_woe[7], p)
-x9 = get_score(coe[5], train_woe[9], p)
+x1 = get_score(coe[1], train_woe['RevolvingUtilizationOfUnsecuredLines'], p)
+x2 = get_score(coe[2], train_woe['age'], p)
+x3 = get_score(coe[3], train_woe['NumberOfTime30-59DaysPastDueNotWorse'], p)
+x7 = get_score(coe[4], train_woe['NumberOfTimes90DaysLate'], p)
+x9 = get_score(coe[5], train_woe['NumberOfTime60-89DaysPastDueNotWorse'], p)
 # x1的四个值分别对应cut的四个区间.PDO Point Double Odds,    就是好坏比翻一倍， odds就是好坏比
 print(x1)
 print(x2)
